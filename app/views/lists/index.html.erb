@@ -21,11 +21,28 @@
       <li>
         <div class="view">
           <label><%= link_to list.name, list_path(list) %></label>
+              <!-- <%= link_to '', lists_path(list), :method => "delete", :class => "destroy" %> -->
+              <%=form_tag(list_path(list), :method=> :delete) do %>
+                  <button type='submit' class='destroy'></button>
+                  <% end %>
         </div>
       </li>
       <% end %>
     </ul>
   </section>
-  <footer class="footer">
-  </footer>
+  <footer class="footer" style="display: block;">
+  				<span class="todo-count"><%=pluralize(@lists.count, 'list')%></span>
+  				<ul class="filters">
+  					<li>
+  						<a href="#/" class="selected">Show All</a>
+  					</li>
+  					<li>
+  						<a href="/lists">Shared Lists</a>
+  					</li>
+  					<li>
+  						<a href="/sessions/logout">Logout</a>
+  					</li>
+  				</ul>
+  				<button class="clear-completed" style="display: none;"></button>
+  			</footer>
 </section>

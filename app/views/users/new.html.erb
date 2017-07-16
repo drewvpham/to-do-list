@@ -1,4 +1,6 @@
+<h1>Welcome to Listering</h1>
 <%= button_to('Log in with Github!', '/auth/github') %>
+<p>-OR-</p>
 
 <h3>Register</h3>
 <%= render partial: "users/form", locals: {user: @user} %>
@@ -8,11 +10,11 @@
      <form action='/sessions' method='post'>
        <input type='hidden' name='authenticity_token' value="<%=form_authenticity_token%>">
        <div>
-         <label>Email</label>
+         <label>Email</label><br>
          <input type='text' name='user[email]'>
        </div>
        <div>
-         <label>Password</label>
+         <label>Password</label><br>
          <input type='password' name='user[password]'>
        </div>
        <input type='submit' value='Login'>

@@ -18,11 +18,31 @@
 
           <% end %>
           <label><%=item.description%></label>
+          <%=form_tag(list_item_path(item.list, item), :method=> :delete) do %>
+              <button type='submit' class='destroy'></button>
+              <% end %>
         </div>
       </li>
       <%end%>
     </ul>
   </section>
-  <footer class="footer">
-  </footer>
+
+
+  <footer class="footer" style="display: block;">
+  				<span class="todo-count"><%=pluralize(@list.items.count, 'item')%></span>
+  				<ul class="filters">
+  					<li>
+  						<a href="#/" class="selected">All</a>
+  					</li>
+  					<li>
+  						<a href="/lists">Return to Your Lists</a>
+  					</li>
+  					<li>
+  						<a href="/sessions/logout">Logout</a>
+  					</li>
+  				</ul>
+  				<button class="clear-completed" style="display: none;"></button>
+  			</footer>
+
+
 </section>

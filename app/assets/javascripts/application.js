@@ -19,3 +19,9 @@ $(function(){
     $(this).parents("form").trigger("submit")
   })
 });
+
+$(function(){
+  $("button.toggle").on("click", function(){
+    $(this).parents("form").trigger("submit")
+  })
+});

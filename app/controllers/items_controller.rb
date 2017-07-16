@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+   before_action :user_authorized
   def create
     @list = List.find(params[:list_id])
     # @item = @list.items.create(item_params)
@@ -22,6 +23,13 @@ class ItemsController < ApplicationController
    @item.update(item_params)
 
    redirect_to list_path(@item.list)
+  end
+
+  def destroy
+    @list=List.find(params[:list_id])
+    @item=@list.items.find(params[:id])
+    @item.destroy
+    redirect_to @list
   end
 
   private
