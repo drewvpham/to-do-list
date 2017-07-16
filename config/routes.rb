@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+   get '/auth/:provider/callback' => 'sessions#create'
   resources :users
+  resources :sessions
   resources :items
   resources :lists do
     resources :items
