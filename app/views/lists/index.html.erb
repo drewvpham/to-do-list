@@ -1,11 +1,16 @@
+
 <section class="todoapp">
   <header class="header">
     <h1>Your Lists</h1>
     <%= form_for(@list) do |f| %>
-      <%= f.text_field :name, :class => "new-todo", :placeholder=>"Make a new list..." %>
+    <%if @list.errors[:name].present?%>
+      <%= f.text_field :name, :class => "new-todo", :placeholder => "List must have a name..."%>
+      <%else%>
+      <%= f.text_field :name, :class => "new-todo", :placeholder =>"Enter a new list name..."%>
+
+      <%end%>
       <%= f.submit :style => "display: none" %>
     <% end %>
-
 </form>
   </header>
   <section class="main">

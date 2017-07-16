@@ -10,16 +10,16 @@ class ListsController < ApplicationController
     @item=Item.new
   end
 
-  def create
-    @list = List.new(list_params)
-    if @list.valid?
-      @list.save
-      redirect_to @list
-    else
-      redirect_to :root
-    end
 
+  def create
+  @list = List.new(list_params)
+  if @list.save
+    redirect_to list_url(@list)
+  else
+    @lists = List.all
+    render :index
   end
+end
   private
 
     def list_params
