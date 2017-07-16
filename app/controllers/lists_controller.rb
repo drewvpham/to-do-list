@@ -3,7 +3,6 @@ class ListsController < ApplicationController
   def index
     @list = List.new
     @lists = List.all
-
   end
 
   def show
@@ -12,10 +11,13 @@ class ListsController < ApplicationController
 
   def create
     @list = List.new(list_params)
-    @list.name = params[:list][:name]
-    @list.save
+    if @list.valid?
+      @list.save
+      redirect_to @list
+    else
+      redirect_to :root
+    end
 
-    redirect_to list_url(@list)
   end
   private
 
