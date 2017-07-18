@@ -1,9 +1,7 @@
 
 <section class="todoapp">
-
-
-
   <section class="main">
+    <h1>Welcome!</h1>
     <ul class="todo-list">
       <li>
 
@@ -34,23 +32,28 @@
 
         <div class="view">
           <label>Login</label>
-
-        </div>
+          </div>
+          <form action='/sessions' method='post'>
+          <input type='hidden' name='authenticity_token' value="<%=form_authenticity_token%>">
 
       </li>
-      <input class="new-todo" placeholder="Email" autofocus="">
-      <input class="new-todo" placeholder="Password" autofocus="">
+      <input type='text' class="new-todo" placeholder="Email" autofocus="" name='user[email]'>
+
+      <li>
+
+      <input type='password' class="new-todo" placeholder="Password" autofocus="" name='user[password]'>
+      </li>
+      <input type='submit' value='Login' style = "display: none">
+    </form>
     </ul>
 
 
 
   </section>
   <footer class="footer" style="display: block;">
-  				<span class="todo-count">Shared with </span>
+
   				<ul class="filters">
-  					<li>
-  						<a href="/lists" class="selected">Back to Your Lists</a>
-  					</li>
+
   					<li>
   						<%= link_to('Log in with Github!', '/auth/github') %>
   					</li>
@@ -70,16 +73,5 @@
 
 
 
-   <form action='/sessions' method='post'>
-     <input type='hidden' name='authenticity_token' value="<%=form_authenticity_token%>">
-     <div>
-       <label>Email</label><br>
-       <input type='text' name='user[email]'>
-     </div>
-     <div>
-       <label>Password</label><br>
-       <input type='password' name='user[password]'>
-     </div>
-     <input type='submit' value='Login'>
-   </form>
+
 <p class='errors'><%= flash[:login_error]%>
