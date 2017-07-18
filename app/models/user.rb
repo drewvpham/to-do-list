@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   validates_presence_of :email, :username
   validates :email, :username, uniqueness: true
   has_many :lists, dependent: :destroy
+  has_many :shared_lists
+  has_many :lists_shared, through: :shared_lists, :class_name => 'List', :foreign_key => 'list_id'
 
 
 

@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   helper_method :user_authorized
 
   def user_logged_in
-    redirect_to ideas_path if session[:user_id]
+    redirect_to lists_path if session[:user_id]
   end
 
 end

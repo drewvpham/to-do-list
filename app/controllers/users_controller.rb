@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:index, :show, :edit, :update, :destroy]
+  before_action :user_logged_in, only: [:new]
 
   def new
     @user=User.new
-    
+
   end
 
   def create

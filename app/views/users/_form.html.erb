@@ -1,22 +1,85 @@
-<%= form_for(user) do |f| %>
 
-  <%= f.label :username %><br>
-  <%= f.text_field :username %><br>
+<section class="todoapp">
 
-  <%= f.label :email %><br>
-  <%= f.text_field :email %><br>
 
-  <%= f.label :password %><br>
-  <%= f.password_field :password %><br>
 
-  <%= f.label :password_confirmation %><br>
-  <%= f.password_field :password_confirmation %><br>
+  <section class="main">
+    <ul class="todo-list">
+      <li>
 
-  <%=f.submit%>
-<% end %>
+        <div class="view">
+          <label>Register</label>
+          </li>
+          <%= form_for(user) do |f| %>
+
+          <li>
+            <%= f.text_field :username, :class=>"new-todo", :placeholder=>"Username", :autofocus=>""%>
+          </li>
+          <li>
+            <%= f.text_field :email, :class=>"new-todo", :placeholder=>"Email", :autofocus=>""%>
+          </li>
+          <li>
+            <%= f.text_field :password, :class=>"new-todo", :placeholder=>"Password", :autofocus=>""%>
+          </li>
+          <li>
+            <%= f.text_field :password_confirmation, :class=>"new-todo", :placeholder=>"Password Confirmation", :autofocus=>""%>
+          </li>
+    </ul>
+      <%= f.submit :style => "display: none" %>
+    <% end %>
+
+
+    <ul class="todo-list">
+      <li>
+
+        <div class="view">
+          <label>Login</label>
+
+        </div>
+
+      </li>
+      <input class="new-todo" placeholder="Email" autofocus="">
+      <input class="new-todo" placeholder="Password" autofocus="">
+    </ul>
+
+
+
+  </section>
+  <footer class="footer" style="display: block;">
+  				<span class="todo-count">Shared with </span>
+  				<ul class="filters">
+  					<li>
+  						<a href="/lists" class="selected">Back to Your Lists</a>
+  					</li>
+  					<li>
+  						<%= link_to('Log in with Github!', '/auth/github') %>
+  					</li>
+  				</ul>
+  				<button class="clear-completed" style="display: none;"></button>
+  			</footer>
+</section>
+
+
+
 
 <% if flash[:errors]%>
     <%flash[:errors].each do |error|%>
     <p><%=error%></p>
   <%end%>
 <%end%>
+
+
+
+   <form action='/sessions' method='post'>
+     <input type='hidden' name='authenticity_token' value="<%=form_authenticity_token%>">
+     <div>
+       <label>Email</label><br>
+       <input type='text' name='user[email]'>
+     </div>
+     <div>
+       <label>Password</label><br>
+       <input type='password' name='user[password]'>
+     </div>
+     <input type='submit' value='Login'>
+   </form>
+<p class='errors'><%= flash[:login_error]%>

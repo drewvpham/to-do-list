@@ -31,9 +31,11 @@
   <footer class="footer" style="display: block;">
   				<span class="todo-count"><%=pluralize(@list.items.count, 'item')%></span>
   				<ul class="filters">
+            <%if @list.user==current_user%>
   					<li>
-  						<a href="#/" class="selected">All</a>
+  						<a href="/lists/<%=@list.id%>/edit">Share List</a>
   					</li>
+            <%end%>
   					<li>
   						<a href="/lists">Return to Your Lists</a>
   					</li>
