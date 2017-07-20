@@ -1,10 +1,15 @@
 class User < ActiveRecord::Base
   has_secure_password
   validates_presence_of :email, :username
-  validates :email, :username, uniqueness: true
+  validates :email, :username, uniqueness: true, case_sensitive: false 
   has_many :lists, dependent: :destroy
   has_many :shared_lists
-  has_many :lists_shared, through: :shared_lists, :class_name => 'List', :foreign_key => 'list_id'
+  has_many :lists_shared, through: :shared_lists, source: :list
+  validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
+
+  def all_lists
+    self.lists + self.lists_shared
+  end
 
 
 

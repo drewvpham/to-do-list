@@ -8,7 +8,7 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
-    if @list.user==current_user
+    if @list.user==current_user || @list.users.include?(current_user)
     @item=Item.new
   else
     redirect_to lists_path
@@ -30,8 +30,9 @@ end
 
 
 def shared_lists
-  @lists = SharedList.includes(:list).where(user: current_user)
+  @lists = current_user.lists_shared
   @list=List.new
+  #solve how to share lists..
 end
 
 def destroy
@@ -46,6 +47,11 @@ def edit
   @shared_list=SharedList.new
   @users=User.all
   @list=List.find(params[:id])
+end
+
+def update
+
+
 end
 
 def create_shared_list

@@ -2,33 +2,29 @@
 <section class="todoapp">
   <header class="header">
     <h1>Share Your List</h1>
-    <input class="new-todo" placeholder="Choose who can view your list" autofocus="">
+    <input class="new-todo" placeholder="Share with the following users..." autofocus="">
   </header>
   <section class="main">
     <input class="toggle-all" type="checkbox">
-    <label for="toggle-all">Mark all as complete</label>
     <ul class="todo-list">
       <%@users.each do |user|%>
+      <li class="completed">
+       <div class="view">
+         <%= form_for(@shared_list) do |f| %>
+           <%= f.check_box :completion, :class => "toggle", :checked => true %>
 
-      <%if user != current_user%>
-      <li>
+         <% end %>
+         <label><%=user.username%></label>
 
-        <div class="view">
-          <%= form_for(@shared_list) do |f| %>
-            <%= f.check_box :user, :class => "toggle", :checked => true%>
-              <%=f.hidden_field(:user, :value => user)%>
-              <%=f.hidden_field(:list, :value => @list)%>
-          <% end %>
 
-          <label><%=user.username%></label>
 
-        </div>
-      </li>
-      <%end%>
-      <%end%>
-
+       </div>
+     </li>
+     <%end%>
+   </ul>
 
   </section>
+
   <footer class="footer" style="display: block;">
   				<span class="todo-count">Shared with <%=pluralize(@list.users.count, 'user')%></span>
   				<ul class="filters">

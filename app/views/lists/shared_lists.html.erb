@@ -1,7 +1,7 @@
 
 <section class="todoapp">
   <header class="header">
-    <h1>Your Lists</h1>
+    <h1>Shared Lists</h1>
     <%= form_for(@list) do |f| %>
     <%if @list.errors[:name].present?%>
       <%= f.text_field :name, :class => "new-todo", :placeholder => "List must have a name..."%>
@@ -34,10 +34,10 @@
   				<span class="todo-count"><%=pluralize(@lists.count, 'list')%></span>
   				<ul class="filters">
   					<li>
-  						<a href="#/" class="selected">Your Lists</a>
+  						<a href="/lists">Your Lists</a>
   					</li>
   					<li>
-  						<a href="/lists">Shared Lists</a>
+  						<a href="/shared_lists" class="selected">Shared Lists</a>
   					</li>
   					<li>
   						<a href="/sessions/logout">Logout</a>
