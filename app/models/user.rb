@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
   validates_presence_of :email, :username
-  validates :email, :username, uniqueness: true, case_sensitive: false 
+  validates :email, :username, uniqueness: true, case_sensitive: false
   has_many :lists, dependent: :destroy
   has_many :shared_lists
   has_many :lists_shared, through: :shared_lists, source: :list
@@ -10,9 +10,6 @@ class User < ActiveRecord::Base
   def all_lists
     self.lists + self.lists_shared
   end
-
-
-
 
   def self.find_or_create_by_omniauth(auth_hash)
     oauth_email=auth_hash['info']['email']
@@ -26,4 +23,5 @@ class User < ActiveRecord::Base
     user.username=auth_hash['info']['nickname']
     end
   end
+  
 end

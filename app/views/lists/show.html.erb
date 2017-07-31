@@ -7,22 +7,20 @@
     <% end %>
   </header>
   <section class="main">
-    <input class="toggle-all" type="checkbox">
-    <label for="toggle-all">Mark all as complete</label>
+
     <ul class="todo-list">
       <%@list.items.each do |item|%>
        <li class="<%= "completed" if item.completion %>">
         <div class="view">
           <%= form_for([@list, item]) do |f| %>
             <%= f.check_box :completion, :class => "toggle", :checked => (item.completion) %>
-
           <% end %>
           <label><%=item.description%></label>
           <%if @list.user == current_user%>
           <%=form_tag(list_item_path(item.list, item), :method=> :delete) do %>
               <button type='submit' class='destroy'></button>
-              <% end %>
-              <% end %>
+            <% end %>
+          <% end %>
         </div>
       </li>
       <%end%>
@@ -37,16 +35,16 @@
   						<a href="/lists">Your Lists</a>
   					</li>
             <%if @list.user==current_user%>
-  					<li>
-  						<a href="/lists/<%=@list.id%>/edit">Share List</a>
-  					</li>
+    					<li>
+    						<a href="/lists/<%=@list.id%>/edit">Share List</a>
+    					</li>
             <%end%>
 
   					<li>
   						<a href="/sessions/logout">Logout</a>
   					</li>
   				</ul>
-  				<button class="clear-completed" style="display: none;"></button>
+  			 <button class="clear-completed" style="display: none;"></button>
   			</footer>
 
 

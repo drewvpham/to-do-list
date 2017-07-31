@@ -4,14 +4,15 @@
     <h1>Welcome!</h1>
     <ul class="todo-list">
       <li>
-
         <div class="view">
           <label>Register</label>
           </li>
           <%= form_for(user) do |f| %>
-
           <li>
             <%= f.text_field :username, :class=>"new-todo", :placeholder=>"Username", :autofocus=>""%>
+
+            
+
           </li>
           <li>
             <%= f.text_field :email, :class=>"new-todo", :placeholder=>"Email", :autofocus=>""%>
@@ -25,35 +26,25 @@
     </ul>
       <%= f.submit :style => "display: none" %>
     <% end %>
-
-
     <ul class="todo-list">
       <li>
-
         <div class="view">
           <label>Login</label>
-          </div>
+        </div>
           <form action='/sessions' method='post'>
           <input type='hidden' name='authenticity_token' value="<%=form_authenticity_token%>">
-
       </li>
-      <input type='text' class="new-todo" placeholder="Email" autofocus="" name='user[email]'>
-
+        <input type='text' class="new-todo" placeholder="Email" autofocus="" name='user[email]'>
       <li>
-
-      <input type='password' class="new-todo" placeholder="Password" autofocus="" name='user[password]'>
+        <input type='password' class="new-todo" placeholder="Password" autofocus="" name='user[password]'>
       </li>
-      <input type='submit' value='Login' style = "display: none">
+        <input type='submit' value='Login' style = "display: none">
     </form>
     </ul>
-
-
-
   </section>
+
   <footer class="footer" style="display: block;">
-
   				<ul class="filters">
-
   					<li>
   						<%= link_to('Log in with Github!', '/auth/github') %>
   					</li>
@@ -62,16 +53,10 @@
   			</footer>
 </section>
 
-
-
-
 <% if flash[:errors]%>
     <%flash[:errors].each do |error|%>
     <p><%=error%></p>
   <%end%>
 <%end%>
-
-
-
 
 <p class='errors'><%= flash[:login_error]%>
