@@ -2,20 +2,15 @@
 <section class="todoapp">
   <header class="header">
     <h1>Shared Lists</h1>
-    <%= form_for(@list) do |f| %>
-    <%if @list.errors[:name].present?%>
-      <%= f.text_field :name, :class => "new-todo", :placeholder => "List must have a name..."%>
-      <%else%>
-      <%= f.text_field :name, :class => "new-todo", :placeholder =>"Enter a new list name..."%>
-
-      <%end%>
-      <%= f.submit :style => "display: none" %>
-    <% end %>
-</form>
+    <ul class="todo-list">
+      <li>
+        <div class="view">
+          <label></label>
+          </li>
+        </ul>
   </header>
   <section class="main">
-    <input class="toggle-all" type="checkbox">
-    <label for="toggle-all">Mark all as complete</label>
+
     <ul class="todo-list">
       <% @lists.each do |list| %>
       <li>

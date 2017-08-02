@@ -5,19 +5,14 @@
     <input class="new-todo" placeholder="Share with the following users..." autofocus="">
   </header>
   <section class="main">
-    <input class="toggle-all" type="checkbox">
     <ul class="todo-list">
       <%@users.each do |user|%>
       <li class="completed">
        <div class="view">
          <%= form_for(@shared_list) do |f| %>
            <%= f.check_box :completion, :class => "toggle", :checked => true %>
-
          <% end %>
          <label><%=user.username%></label>
-
-
-
        </div>
      </li>
      <%end%>

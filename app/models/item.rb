@@ -9,5 +9,5 @@ class Item < ApplicationRecord
   def incomplete?
     self.completion==false
   end
-  
+
 end

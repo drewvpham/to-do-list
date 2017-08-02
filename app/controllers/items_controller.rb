@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
    before_action :user_authorized
   def create
+    print 'this is the function i am hitting'
     @list = List.find(params[:list_id])
     # @item = @list.items.create(item_params)
     @item = @list.items.build(item_params)
@@ -12,8 +13,7 @@ class ItemsController < ApplicationController
       redirect_to @list
       #is this redundant? both should take you back to the same list regardless
     else
-
-      render 'lists/show'
+      redirect_to :back
     end
 
   end

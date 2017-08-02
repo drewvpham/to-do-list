@@ -4,7 +4,6 @@ class UsersController < ApplicationController
 
   def new
     @user=User.new
-
   end
 
   def create
@@ -14,7 +13,7 @@ class UsersController < ApplicationController
       redirect_to lists_path
     else
       flash[:errors]= @user.errors.full_messages
-      redirect_to :back
+      render :new
     end
   end
 

@@ -9,10 +9,10 @@ class ListsController < ApplicationController
   def show
     @list = List.find(params[:id])
     if @list.user==current_user || @list.users.include?(current_user)
-    @item=Item.new
-  else
-    redirect_to lists_path
-  end
+      @item=Item.new
+    else
+      redirect_to lists_path
+    end
   end
 
 
@@ -55,7 +55,7 @@ def update
 end
 
 def create_shared_list
-  raise params.inspect
+
   @list=List.find(params[:id])
   @shared_list=SharedList.new(list: @list, user: User.first)
 

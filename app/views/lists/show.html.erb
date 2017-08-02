@@ -7,7 +7,6 @@
     <% end %>
   </header>
   <section class="main">
-
     <ul class="todo-list">
       <%@list.items.each do |item|%>
        <li class="<%= "completed" if item.completion %>">
@@ -17,6 +16,7 @@
           <% end %>
           <label><%=item.description%></label>
           <%if @list.user == current_user%>
+
           <%=form_tag(list_item_path(item.list, item), :method=> :delete) do %>
               <button type='submit' class='destroy'></button>
             <% end %>
