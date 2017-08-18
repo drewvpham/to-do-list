@@ -11,14 +11,12 @@
           <li>
             <%= f.text_field :username, :class => "new-todo", :placeholder => (@user.errors.full_messages_for(:username).first || "Username"), :autofocus=>""%>
           </li>
+
           <li>
-              <%= f.text_field :email, :class => "new-todo", :placeholder => (@user.errors.full_messages_for(:email).first || "Email"), :autofocus=>""%>
+              <%= f.password_field :password, :class => "new-todo", :placeholder => (@user.errors.full_messages_for(:password).first || "Password"), :autofocus=>""%>
           </li>
           <li>
-              <%= f.text_field :password, :class => "new-todo", :placeholder => (@user.errors.full_messages_for(:password).first || "Password"), :autofocus=>""%>
-          </li>
-          <li>
-              <%= f.text_field :username, :class => "new-todo", :placeholder => (@user.errors.full_messages_for(:password_confirmation).first || "Password Confirmation"), :autofocus=>""%>
+              <%= f.password_field :password_confirmation, :class => "new-todo", :placeholder => (@user.errors.full_messages_for(:password).first || "Password Confirmation"), :autofocus=>""%>
           </li>
     </ul>
       <%= f.submit :style => "display: none" %>
@@ -31,7 +29,7 @@
           <form action='/sessions' method='post'>
           <input type='hidden' name='authenticity_token' value="<%=form_authenticity_token%>">
       </li>
-        <input type='text' class="new-todo" placeholder="Email" autofocus="" name='user[email]'>
+        <input type='text' class="new-todo" placeholder="Username" autofocus="" name='user[username]'>
       <li>
         <input type='password' class="new-todo" placeholder="Password" autofocus="" name='user[password]'>
       </li>
@@ -51,6 +49,7 @@
 </section>
 
 <% if flash[:errors]%>
+
     <%flash[:errors].each do |error|%>
     <p><%=error%></p>
   <%end%>

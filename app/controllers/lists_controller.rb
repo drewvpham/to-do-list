@@ -29,8 +29,6 @@ class ListsController < ApplicationController
 
   def shared_lists
     @lists = current_user.lists_shared
-    @list=List.new
-    #solve how to share lists..
   end
 
   def destroy
@@ -38,26 +36,43 @@ class ListsController < ApplicationController
     @list=List.find(params[:id])
 
     @list.destroy
-    redirect_to lists_path
-  end
-
-  def edit
-    @shared_list=SharedList.new
-    @users=User.all
-    @list=List.find(params[:id])
-  end
-
-  def update
-    @list=List.find(params[:id])
-    @shared_list=SharedList.new(list: @list, user: params[:user])
     redirect_to :back
   end
 
-  def create_shared_list
+  def edit
+    @share=SharedList.new
+    @users=User.where.not(id: current_user.id)
     @list=List.find(params[:id])
-    @shared_list=SharedList.new(list: @list, user: User.first)
-    redirect_to lists_path
+    @user_ids = @list.user_ids
   end
+
+  def update
+    list=List.find(params[:id])
+    user=User.find(params[:user_id])
+    shared=SharedList.find_by(list: list, user: user)
+    if shared
+      shared.delete
+    else
+      SharedList.create(list:list, user: user)
+    end
+    redirect_to :back
+  end
+
+  def delete_shared
+    @list=List.find(params[:id])
+    @shared=SharedList.find_by(list: @list, user: current_user)
+    @shared.destroy
+
+    redirect_to :back
+
+  end
+
+  # def create_shared_list
+  #   @list=List.find(params[:list])
+  #   @user=User.find(params[:user])
+  #   @shared_list=SharedList.new(list: @list, user: @user)
+  #   redirect_to lists_path
+  # end
 
   private
     def list_params

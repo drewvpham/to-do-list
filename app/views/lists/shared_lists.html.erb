@@ -5,9 +5,9 @@
     <ul class="todo-list">
       <li>
         <div class="view">
-            <input class="new-todo">
-          </li>
-        </ul>
+        <label class>Your Shared Lists</label>
+      </li>
+    </ul>
   </header>
   <section class="main">
 
@@ -17,9 +17,13 @@
         <div class="view">
           <label><%= link_to list.name, list_path(list) %></label>
               <!-- <%= link_to '', lists_path(list), :method => "delete", :class => "destroy" %> -->
-              <%=form_tag(list_path(list), :method=> :delete) do %>
-                  <button type='submit' class='destroy'></button>
-                  <% end %>
+                  <form action='/lists/delete_shared' method='post'>
+
+                    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                      <input type="hidden" name="_method" value="destroy">
+                      <input type="hidden" name="id" value="<%=list.id%>">
+                    <button type='submit' class='destroy'></button>
+                  </form>
         </div>
       </li>
       <% end %>

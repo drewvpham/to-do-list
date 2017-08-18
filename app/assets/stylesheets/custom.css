@@ -4,6 +4,14 @@ body {
 	padding: 0;
 }
 
+.hidden{
+    visibility: hidden;
+}
+
+h1{
+	padding-top: 10px;
+}
+
 button {
 	margin: 0;
 	padding: 0;
@@ -69,6 +77,8 @@ input[type="checkbox"] {
 	font-weight: 300;
 	color: #b9b9b9;
 }
+
+
 
 .todoapp h1 {
 	position: absolute;
