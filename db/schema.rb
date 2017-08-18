@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170718005728) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "items", force: :cascade do |t|
     t.string   "description"
     t.integer  "list_id"
@@ -19,8 +22,8 @@ ActiveRecord::Schema.define(version: 20170718005728) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.boolean  "completion",  default: false
-    t.index ["list_id"], name: "index_items_on_list_id"
-    t.index ["user_id"], name: "index_items_on_user_id"
+    t.index ["list_id"], name: "index_items_on_list_id", using: :btree
+    t.index ["user_id"], name: "index_items_on_user_id", using: :btree
   end
 
   create_table "lists", force: :cascade do |t|
@@ -29,7 +32,7 @@ ActiveRecord::Schema.define(version: 20170718005728) do
     t.datetime "updated_at",                 null: false
     t.integer  "user_id"
     t.boolean  "public",     default: false
-    t.index ["user_id"], name: "index_lists_on_user_id"
+    t.index ["user_id"], name: "index_lists_on_user_id", using: :btree
   end
 
   create_table "shared_lists", force: :cascade do |t|
@@ -37,17 +40,22 @@ ActiveRecord::Schema.define(version: 20170718005728) do
     t.integer  "list_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["list_id"], name: "index_shared_lists_on_list_id"
-    t.index ["user_id"], name: "index_shared_lists_on_user_id"
+    t.index ["list_id"], name: "index_shared_lists_on_list_id", using: :btree
+    t.index ["user_id"], name: "index_shared_lists_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
-    t.integer  "uid",             limit: 8
+    t.bigint   "uid"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "items", "lists"
+  add_foreign_key "items", "users"
+  add_foreign_key "lists", "users"
+  add_foreign_key "shared_lists", "lists"
+  add_foreign_key "shared_lists", "users"
 end

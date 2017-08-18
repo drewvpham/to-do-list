@@ -4,7 +4,13 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
-gem "pg"
+
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+
+# Use postgresql as the database for Active Record
+gem 'pg', '~> 0.18'
+# Use Puma as the app server
+
 
 gem 'dotenv-rails'
 gem 'omniauth-github'

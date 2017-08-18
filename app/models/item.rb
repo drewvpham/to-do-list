@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   validates_presence_of :description
-  belongs_to :user, dependent: :destroy
-  belongs_to :list, dependent: :destroy
+  belongs_to :user
+  belongs_to :list
 
   def complete?
     self.completion==true

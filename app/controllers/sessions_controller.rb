@@ -38,7 +38,7 @@ class SessionsController < ApplicationController
         redirect_to lists_path
       else
         flash[:password]='Invalid password'
-        redirect_to :back
+        redirect_to :root
       end
     end
   end
