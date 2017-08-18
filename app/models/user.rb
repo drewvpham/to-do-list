@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
   validates_presence_of :username
+  has_many :items
 
   has_many :lists, dependent: :destroy
   has_many :shared_lists

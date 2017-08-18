@@ -4,10 +4,10 @@ class ItemsController < ApplicationController
     print 'this is the function i am hitting'
     @list = List.find(params[:list_id])
     # @item = @list.items.create(item_params)
-    @item = @list.items.build(item_params)
+    # @item = @list.items.build(item_params)
     # @item.save
     # the above works just like the code below
-    # @item=Item.create(item_params.merge(list: @list))
+    @item=Item.create(item_params.merge(list: @list, user: current_user))
 
     if @item.save
       redirect_to @list

@@ -15,7 +15,7 @@
             <%= f.check_box :completion, :class => "toggle", :checked => (item.completion) %>
           <% end %>
           <label><%=item.description%></label>
-          <%if @list.user == current_user%>
+          <%if item.user == @user%>
 
           <%=form_tag(list_item_path(item.list, item), :method=> :delete) do %>
               <button type='submit' class='destroy'></button>
@@ -34,7 +34,7 @@
             <li>
   						<a href="/lists">Your Lists</a>
   					</li>
-            <%if @list.user==current_user%>
+            <%if @list.user==@user%>
     					<li>
     						<a href="/lists/<%=@list.id%>/edit">Share List</a>
     					</li>

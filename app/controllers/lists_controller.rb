@@ -8,7 +8,8 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
-    if @list.user==current_user || @list.users.include?(current_user)
+    @user=current_user
+    if @list.user==@user || @list.users.include?(@user)
       @item=Item.new
     else
       redirect_to lists_path
@@ -17,7 +18,7 @@ class ListsController < ApplicationController
 
 
   def create
-    @user=User.find(current_user)
+    @user=current_user
     @list = @user.lists.build(list_params)
     if @list.save
       redirect_to list_url(@list)
