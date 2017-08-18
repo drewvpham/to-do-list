@@ -5,9 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 gem "pg"
-gem 'paperclip'
-gem 'kaminari'
-gem 'activeadmin', github: 'activeadmin'
+
 gem 'dotenv-rails'
 gem 'omniauth-github'
 gem 'devise'
