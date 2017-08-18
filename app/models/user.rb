@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   validates_presence_of :username
   validates :password, on: :create, presence: true, length: 6..32
   has_many :items
+  validates :username, uniqueness: true
 
   has_many :lists, dependent: :destroy
   has_many :shared_lists

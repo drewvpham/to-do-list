@@ -28,14 +28,16 @@ class SessionsController < ApplicationController
       #
       # end
     else
-      user=User.find_by(email: user_params[:email])
+      user=User.find_by(username: user_params[:username])
+
+      if user==nil
+        flash[:username]='Invalid username'
+      end
       if user && user.authenticate(user_params[:password])
         session[:user_id]=user.id
         redirect_to lists_path
       else
-
-        flash[:login_error]='Invalid credentials'
-  
+        flash[:password]='Invalid password'
         redirect_to :back
       end
     end
@@ -45,8 +47,6 @@ class SessionsController < ApplicationController
     reset_session
     redirect_to :root
   end
-
-
 
   private
 

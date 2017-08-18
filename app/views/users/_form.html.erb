@@ -1,7 +1,7 @@
 
 <section class="todoapp">
   <section class="main">
-    <h1>Welcome!</h1>
+    <h1>Welcome to LastOff!</h1>
     <ul class="todo-list">
       <li>
         <div class="view">
@@ -29,9 +29,9 @@
       </li>
       <form action='/sessions' method='post'>
         <input type='hidden' name='authenticity_token' value="<%=form_authenticity_token%>">
-        <input type='text' class="new-todo" placeholder=" <%= flash[:login_error] || "Username" %>" autofocus="" name='user[username]'>
+        <input type='text' class="new-todo" placeholder=" <%= flash[:username] || "Username" %>" autofocus="" name='user[username]'>
         <li>
-          <input type='password' class="new-todo" placeholder='<%= flash[:login_error] || "Password" %>' autofocus="" name='user[password]'>
+          <input type='password' class="new-todo" placeholder='<%= flash[:password] || "Password" %>' autofocus="" name='user[password]'>
         </li>
         <input type='submit' value='Login' style = "display: none">
       </form>
@@ -39,11 +39,11 @@
   </section>
 
   <footer class="footer" style="display: block;">
-  				<ul class="filters">
-  					<li>
-  						<%= link_to('Log in with Github!', '/auth/github') %>
-  					</li>
-  				</ul>
-  				<button class="clear-completed" style="display: none;"></button>
-  			</footer>
+  	<ul class="filters">
+  		<li>
+  			<%= link_to('Log in with Github!', '/auth/github') %>
+  		</li>
+  	</ul>
+  	<button class="clear-completed" style="display: none;"></button>
+  </footer>
 </section>
