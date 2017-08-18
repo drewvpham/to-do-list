@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
   validates_presence_of :username
+  validates :password, on: :create, presence: true, length: 6..32
   has_many :items
 
   has_many :lists, dependent: :destroy
