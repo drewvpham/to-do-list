@@ -13,7 +13,8 @@ class ItemsController < ApplicationController
       redirect_to @list
       #is this redundant? both should take you back to the same list regardless
     else
-      redirect_to :back
+  
+       render "lists/show"
     end
 
   end

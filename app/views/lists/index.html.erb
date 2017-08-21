@@ -7,11 +7,9 @@
       <%= f.text_field :name, :class => "new-todo", :placeholder => "List must have a name...", :autofocus=>""%>
       <%else%>
       <%= f.text_field :name, :class => "new-todo", :placeholder =>"Enter a new list name...", :autofocus=>""%>
-
       <%end%>
       <%= f.submit :style => "display: none" %>
     <% end %>
-
   </header>
   <section class="main">
     <ul class="todo-list">
