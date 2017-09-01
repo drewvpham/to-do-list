@@ -8,6 +8,7 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
+    # @list.items.order('created_at ASC')
     @user=current_user
     if @list.user==@user || @list.users.include?(@user)
       @item=Item.new
@@ -34,9 +35,9 @@ class ListsController < ApplicationController
 
   def destroy
     # raise params.inspect
-    @list=List.find(params[:id])
+    list=List.find(params[:id])
 
-    @list.destroy
+    list.destroy
     redirect_to :back
   end
 

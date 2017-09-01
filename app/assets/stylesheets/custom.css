@@ -7,6 +7,9 @@ body {
 .hidden{
     visibility: hidden;
 }
+.right{
+	float: right;
+}
 
 h1{
 	padding-top: 10px;
@@ -73,6 +76,12 @@ input[type="checkbox"] {
 }
 
 .todoapp input::input-placeholder {
+	font-style: italic;
+	font-weight: 300;
+	color: #b9b9b9;
+}
+
+.placeholder{
 	font-style: italic;
 	font-weight: 300;
 	color: #b9b9b9;
@@ -199,14 +208,14 @@ label[for='toggle-all'] {
 	transition: color 0.4s;
 }
 
-.todo-list li.completed label {
+/*.todo-list li.completed label {
 	color: #af5b5e;
-	/*or #d9d9d9*/
+
 	text-decoration: line-through;
-}
+}*/
 
 .todo-list li .destroy {
-	display: none;
+	/*display: none;*/
 	position: absolute;
 	top: 0;
 	right: 10px;

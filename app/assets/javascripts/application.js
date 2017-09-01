@@ -12,16 +12,20 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require items
+//= require handlebars.min
 //= require_tree .
 
-$(function(){
-  $("input.toggle").on("change", function(){
-    $(this).parents("form").trigger("submit")
-  })
-});
 
-$(function(){
-  $("button.toggle").on("click", function(){
-    $(this).parents("form").trigger("submit")
-  })
-});
+
+// $(function(){
+//   $("input.toggle").on("change", function(){
+//     $(this).parents("form").trigger("submit")
+//   })
+// });
+
+// $(function(){
+//   $("button.toggle").on("click", function(){
+//     $(this).parents("form").trigger("submit")
+//   })
+// });

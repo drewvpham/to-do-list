@@ -10,14 +10,14 @@ class ItemsController < ApplicationController
     @item=Item.create(item_params.merge(list: @list, user: current_user))
 
     if @item.save
-      redirect_to @list
-      #is this redundant? both should take you back to the same list regardless
-    else
-  
-       render "lists/show"
-    end
-
-  end
+      respond_to do |f|
+             f.html {redirect_to list_path(@list)}
+             f.json {render :json => @item}
+           end
+         else
+           render "lists/show"
+         end
+       end
 
   def update
    @item = Item.find(params[:id])
@@ -27,11 +27,12 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    list=List.find(params[:list_id])
-    item=Item.find(params[:id])
-
-    item.destroy
-    redirect_to list
+    @item = Item.find(params[:id])
+    @item.destroy
+    respond_to do |f|
+      f.json {render :json => @item}
+      f.html {redirect_to list_path(@item.list)}
+    end
   end
 
   private

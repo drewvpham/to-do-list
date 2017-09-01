@@ -5,7 +5,7 @@
     <ul class="todo-list">
       <li>
         <div class="view">
-        <label class>Your Shared Lists</label>
+        <label class='placeholder'>Your Shared Lists</label>
       </li>
     </ul>
   </header>
@@ -15,7 +15,7 @@
       <% @lists.each do |list| %>
       <li>
         <div class="view">
-          <label><%= link_to list.name, list_path(list) %></label>
+          <label><%= link_to list.name, list_path(list) %> <span class='right placeholder'> shared by <%=list.user.username%></span></label>
               <!-- <%= link_to '', lists_path(list), :method => "delete", :class => "destroy" %> -->
                   <form action='/lists/delete_shared' method='post'>
 

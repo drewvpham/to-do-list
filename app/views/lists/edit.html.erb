@@ -4,7 +4,7 @@
     <ul class="todo-list">
       <li>
         <div class="view">
-          <label class="new-todo">Share with the following users...</label>
+          <label class="placeholder">Share with the following users...</label>
       </li>
     </ul>
   </header>
@@ -35,12 +35,15 @@
   <footer class="footer" style="display: block;">
     <span class="todo-count">Shared with <%=pluralize(@user_ids.count, 'user')%></span>
     	<ul class="filters">
-    		<li>
-    			<a href="/lists">Back to Your Lists</a>
-    		</li>
         <li>
-    			<a href="/sessions/logout">Logout</a>
-    		</li>
+          <a href="/lists">Your Lists</a>
+        </li>
+        <li>
+          <a href="/shared_lists">Shared Lists</a>
+        </li>
+        <li>
+          <a href="/sessions/logout">Logout</a>
+        </li>
     	</ul>
     	<button class="clear-completed" style="display: none;"></button>
 
